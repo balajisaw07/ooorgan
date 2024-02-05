@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/hospitalstyles.css">
+    <title>Hospital Login</title>
+</head>
+<body>
+    <div class="header">
+        <h2>Organ Management System</h2>
+        <div>
+            <a href="/">Home</a>
+            <a href="hospital-login.html">Hospital</a>
+            <a href="donor-registration.html">User</a>
+            <a href="/recipient-registration.html">Recipient</a>
+        </div>
+    </div>
+
+    <div class="login-card">
+        <div class="card-header">
+            <img src="../static/images/hospital-sigin.jpeg" alt="Header Image">
+        </div>
+        <div class="card-body">
+            <form id="loginForm" onsubmit="validateLogin(); return false;">
+                <label for="hospitalName">Hospital Name:</label>
+                <input type="text" id="hospitalName" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Your Hospital Name. All rights reserved.</p>
+    </div>
+
+    <script src="../static/scripts/hospitalscript.js"></script>
+</body>
+</html>
+

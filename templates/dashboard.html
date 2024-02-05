@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/styles/dashboardstyles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Hospital Dashboard</title>
+</head>
+<body>
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <!-- <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg> -->
+                <img src="../static/Images/organ_logo.png" alt="organ-logo" height="50px" width="50px">
+                <span class="ml-3 text-xl">Organ Management System</span>
+            </a>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+                <a class="mr-5 hover:text-gray-900" href="/">Home</a>
+                <a class="mr-5 hover:text-gray-900" href="hospital-login.html">Hospital</a>
+                <a class="mr-5 hover:text-gray-900" href="donor-registration.html">Donor</a>
+                <a class="mr-5 hover:text-gray-900" href="recipient-registration.html">Recipient</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="donorSection">
+        <h2 class="text-2xl font-semibold mb-4">Donor Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Phone Number</th>
+                    <th>Blood Group</th>
+                    <th>Donor Status</th>
+                    <th>Hospital</th>
+                    <th>Medical Areas</th>
+                    <th>Organ</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="donorTableBody">
+                {% for donors in donor %}
+                
+                <tr>
+                    <td>{{donors.id}}</td>
+                    <td>{{donors.name}}</td>
+                    <td>{{donors.gender}}</td>
+                    <td>{{donors.age}}</td>
+                    <td>{{donors.phone}}</td>
+                    <td>{{donors.blood_group}}</td>
+                    <td>{{donors.donorstatus}}</td>
+                    <td>{{donors.hospital}}</td>
+                    <td>{{donors.medical_history}}</td>
+                    <td>{{donors.organ}}</td>
+                    <td>{{donors.status}}</td>
+                    <td id="accRej">
+                        <form method="post" action="{{ url_for('update_status', req_id=donors.id) }}">
+                            <input type="hidden" name="action" value="accept">
+                            <button class="accept-button" type="submit">Accept</button>
+                        </form>
+                        
+                        <form method="post" action="{{ url_for('update_status', req_id=donors.id) }}">
+                            <input type="hidden" name="action" value="reject">
+                            <button class="reject-button" type="submit">Reject</button>
+                        </form>                        
+                    </td>
+                </tr>
+            </form>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section id="recipientSection" style="display:none;">
+        <h2 class="text-2xl font-semibold mb-4">Recipient Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Phone</th>
+                    <th>Blood Group</th>
+                    <th>Email</th>
+                    <th>Organ Needed</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="recipientTableBody">
+                {% for recepients in recepient %}
+                <tr>
+                    <td>{{recepients.name}}</td>
+                    <td>{{recepients.gender}}</td>
+                    <td>{{recepients.phone}}</td>
+                    <td>{{recepients.blood_group}}</td>
+                    <td>{{recepients.email}}</td>
+                    <td>{{recepients.organ}}</td>
+                    
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <section id="matchedSection" style="display:none;">
+        <h2 class="text-2xl font-semibold mb-4">Matched Requests</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Donor Aadhaar ID</th>
+                    <th>Donor Name</th>
+                    <th>Donor Email</th>
+                    <th>Recipient Aadhaar ID</th>
+                    <th>Recipient Name</th>
+                    <th>Recipient Email</th>
+                    
+                </tr>
+            </thead>
+            <tbody id="matchedTableBody">
+                {% for match in matched_records %}
+                    <tr>
+                        <td>{{ match['id'] }}</td>
+                        <td>{{ match['donor']}}</td>
+                        <td>{{ match['Email']}}</td>
+                        <td>{{ match['rid'] }}</td>
+                        <td>{{ match['recipient']}}</td>
+                        <td>{{match['email']}}</td>
+                    </tr>
+                {% endfor %}
+
+                <!-- Matched records will be displayed here dynamically -->
+            </tbody>
+        </table>
+        <form class="email-form" action="/send_emails" method="POST">
+            <button id="email-btn" type="submit" onclick="sendEmail()">Send Emails</button>
+        </form>
+    </section>
+
+    
+    <div class="button-container">
+        <button class="custom-button" onclick="toggleDonorRecipientView()">Switch to Donor Requests</button>
+        <button class="custom-button" onclick="toggleMatchedRecordsView()">Switch to Matched Requests</button>
+        <button class="custom-button" onclick="toggleRecipientView()">Switch to Recipient Requests</button>
+    </div>
+    
+
+
+    <div class="footer">
+        <p>&copy; 2024 Your Hospital Name. All rights reserved.</p>
+    </div>
+
+    <script src="../static/scripts/dashboardscript.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+</body>
+</html>

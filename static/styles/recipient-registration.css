@@ -1,0 +1,79 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0; /* Reset default margin */
+    
+}
+
+/* .container {
+    padding: 5%;
+    width: 100%;
+    flex: 1; 
+} */
+
+.footer {
+    background-color: rgba(235, 235, 235, 0.5); /* Translucent black color for footer */
+    color: black;
+    text-align: center;
+    padding: 10px;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Custom styles for form boundary and box shadow */
+.form-wrapper {
+    /* max-width: 400px; */
+    margin: 2% 20%;
+    padding: 4% 10%;
+    border: 1px solid black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Increased shadow emphasis */
+    border-radius: 8px;
+    
+}
+
+/* Custom styles for heading box */
+.form-heading {
+    background-color: #ffffff; /* White background */
+    color: #333; /* Text color */
+    padding: 10px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 0.2%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Increased shadow emphasis */
+}
+
+.form-heading h2 {
+    margin-bottom: 0;
+}
+
+/* Adjust styles for the submit button to make it always visible */
+.btn-primary {
+    align-self:center;
+    opacity: 1 !important;
+    color: #fff; /* Text color */
+    background-color: #007bff; /* Button color */
+    transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+    opacity: 0.9;
+}
+.form-heading1 {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px; /* Reduced padding */
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px -6px #222;
+}
+
+

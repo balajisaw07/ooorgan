@@ -1,0 +1,33 @@
+
+
+body {
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.7)),
+    url('../static/Images/What-is-organ-donation.jpeg') center/cover no-repeat fixed;
+    font-family: 'Tailwind', sans-serif;
+    color: #2d3748;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.card {
+    background-color: rgba(255, 255, 255, 0.8); /* Adjusted brightness */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.header{
+    background-color: rgba(255, 255, 255, 0.5); /* Adjusted transparency */
+    box-shadow: 0 4px 6px -6px #222; /* Added box shadow */
+}
+.footer {
+    background-color: rgba(255, 255, 255, 0.5); /* Translucent black color for footer */
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
